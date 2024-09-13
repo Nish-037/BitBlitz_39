@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/form_style.css">
+    <script defer src="js_font_awsome/all.js"></script>
+    <style>
+        body {
+            background-image: url("https://cdn.pixabay.com/photo/2022/09/21/17/02/blue-background-7470781_640.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="alert" id="msg"></div>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container" id="signupForm">
+            <form action="#">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="socail"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <input type="text" placeholder="Name" id="name" />
+                <input type="email" placeholder="Email" id="email" />
+                <input type="password" placeholder="Password" id="password" />
+                <input type="password" placeholder="Confirm Password" id="password2">
+                <button id="signupButton">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container" id="signinForm">
+            <form action="#">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input type="email" placeholder="Email" id="loginEmail"/>
+                <input type="password" placeholder="Password" id="loginPassword"/>
+                <a href="#">Forgot your password?</a>
+                <button id="loginButton">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello Friends</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        function signup(e){
+            e.preventDefault();
+            console.log('Submitted....');
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+
+            var msg = document.getElementById('msg');
+
+            if (name == '' || email == '' || password == '' || password2 == '') {
+                msg.className = "alert alert-danger";
+                msg.innerHTML = 'please fill out all fields';
+            } else {
+                if (name.length < 3) {
+                    msg.innerHTML = 'Name must be at least three characters';
+                } else {
+                    var atpos = email.indexOf("@");
+                    var dotpos = email.lastIndexOf(".");
+                    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
+                        msg.innerHTML = 'Please use valid email';
+                    } else {
+                        if (password != password2) {
+                            msg.innerHTML = 'Password do not match';
+                        } else {
+                            // Store signup details in localStorage
+                            localStorage.setItem('signupName', name);
+                            localStorage.setItem('signupEmail', email);
+                            localStorage.setItem('signupPassword', password);
+                            msg.innerHTML = name + ' is registered with email: ' + email;
+
+                            // Redirect to specified page
+                            window.location.href = "file:///C:/Users/Aryan%20Mishra/OneDrive/Desktop/raspberry%20project/travel%20website%20project%202/index.html";
+                        }
+                    }
+                }
+            }    
+        }
+
+        document.getElementById('signupButton').addEventListener('click', signup, false);
+
+        // Add event listener to login button
+        document.getElementById('loginButton').addEventListener('click', function(event) {
+            // Prevent default form submission behavior
+            event.preventDefault();
+            // Retrieve signup details from localStorage
+            var signupEmail = localStorage.getItem('signupEmail');
+            var signupPassword = localStorage.getItem('signupPassword');
+            // Validate login credentials
+            var loginEmail = document.getElementById('loginEmail').value;
+            var loginPassword = document.getElementById('loginPassword').value;
+            if (loginEmail === signupEmail && loginPassword === signupPassword) {
+                // Redirect to user_page.html if credentials are correct
+                window.location.href = "C:\\Users\\Aryan Mishra\\OneDrive\\Desktop\\raspberry project(final)\\raspberry project\\custom\\user_page.html";
+            } else {
+                // Show error message if credentials are incorrect
+                var msg = document.getElementById('msg');
+                msg.className = "alert alert-danger";
+                msg.innerHTML = 'Invalid email or password';
+            }
+        });
+    </script>
+
+</body>
+</html>
