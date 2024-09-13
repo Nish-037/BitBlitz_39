@@ -1,16 +1,16 @@
-/* Reset some basic elements */
+/* Reset basic elements */
 body, h1, h2, p, ul, ol, li, input, select, textarea, button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Background styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
-    
     color: #333;
     line-height: 1.6;
+    background-color: #45a049;
 }
 
 /* Main container styling */
@@ -20,7 +20,8 @@ body {
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.95;
 }
 
 /* Header Styling */
@@ -32,6 +33,7 @@ header {
 header h1 {
     font-size: 2.5rem;
     color: #4CAF50;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 header p {
@@ -58,7 +60,8 @@ header p {
 }
 
 .section input[type="number"],
-.section select {
+.section select,
+.custom-symptoms textarea {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -95,6 +98,37 @@ header p {
     accent-color: #4CAF50;
 }
 
+/* Custom Symptoms Textarea */
+.custom-symptoms textarea {
+    resize: vertical;
+    min-height: 100px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.custom-symptoms textarea:focus {
+    border-color: #4CAF50;
+}
+
+/* Checkbox for Severe Symptoms */
+.severe {
+    margin-top: 20px;
+}
+
+.severe label {
+    font-size: 1.1rem;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.severe input[type="checkbox"] {
+    accent-color: #d9534f;
+    margin-right: 10px;
+}
+
 /* Submit Button */
 .submit-btn {
     width: 100%;
@@ -118,4 +152,5 @@ footer {
     margin-top: 20px;
     padding: 10px;
     color: #777;
+    font-size: 0.9rem;
 }
