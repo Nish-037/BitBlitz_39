@@ -74,7 +74,7 @@
             container.classList.add("right-panel-active");
         });
 
-        signInButton.addEventListener('click', () => {
+        signInButton.addEventListener('click', () =>  {
             container.classList.remove("right-panel-active");
         });
 
@@ -131,7 +131,7 @@
             var loginPassword = document.getElementById('loginPassword').value;
             if (loginEmail === signupEmail && loginPassword === signupPassword) {
                 // Redirect to user_page.html if credentials are correct
-                window.location.href = "C:\\Users\\Aryan Mishra\\OneDrive\\Desktop\\raspberry project(final)\\raspberry project\\custom\\user_page.html";
+                window.location.href = "main.html";
             } else {
                 // Show error message if credentials are incorrect
                 var msg = document.getElementById('msg');
